@@ -1,107 +1,361 @@
+// ---------------------------------------------
+// GAME SETTINGS
+// ---------------------------------------------
+
 var numCircles = 6;
+
+// Easy is the default mode.
+var currentMode = "easy";
+
+// Array containing the random RGB colours.
 var colours = [];
+
+// The RGB colour the player is trying to guess.
 var pickedColor;
-// SE
-let defaultColour="#75567a"
 
-//Grab all appropriate elements from the HTML.
-var circles = document.querySelectorAll(".circle");
-var colourToGuess = document.getElementById("colour-to-guess");
-var resultMessage = document.getElementById("result-message"); // Scripting
-var banner = document.querySelector("h1");
-var resetButton = document.getElementById("restart");
+// Default colour used when the player chooses incorrectly.
+var defaultColour = "#75567a";
 
+// Added: keeps track of whether the current
+// round has already been completed.
+var gameOver = false;
+
+
+// ---------------------------------------------
+// GET HTML ELEMENTS
+// ---------------------------------------------
+
+var container = document.getElementById("container");
+
+var colourToGuess =
+    document.getElementById("colour-to-guess");
+
+var resultMessage =
+    document.getElementById("result-message");
+
+var banner =
+    document.querySelector("h1");
+
+var resetButton =
+    document.getElementById("restart");
+
+var hintButton =
+    document.getElementById("hint");
+
+var modeButtons =
+    document.querySelectorAll(".mode");
+
+
+// This will contain the current circles.
+var circles;
+
+
+// ---------------------------------------------
+// START THE GAME
+// ---------------------------------------------
 
 init();
 
-//The init function should reset the stage and set a new RGB color
+
+// ---------------------------------------------
+// INIT
+// ---------------------------------------------
+
 function init() {
-	//Call the reset function
-	reset(); // However, we need to define the reset function properly later...
-	//Set the text of the colourToGuess element to display the correct RGB color
-	// Programming Language
+    reset();
 }
 
 
-//Setup so that when the reset button is clicked, the reset function gets called 
-resetButton.addEventListener("click", reset);
+// ---------------------------------------------
+// RESET / START A NEW GAME
+// ---------------------------------------------
 
-
-//Define what should happen when any circle is clicked. 
-function clickCircle() {
-    var onClicked = this.style.backgroundColor;
-    //When a circle is clicked, it should check if the color of a circle 
-    // 🆉. Sūn
-    //is the same as the color to be guessed. If it is, you have won. You should set 
-    if (onClicked === pickedColor) {
-        // the display message to "You win", change the text of the reset button to "Play again"
-        resultMessage.textContent = "You win!";
-        resetButton.textContent = "Play again";
-        // and set the color of each circle and of the banner to be the color we were guessing. 
-        for (var i = 0; i < circles.length; i++) {
-            circles[i].style.backgroundColor = onClicked;
-        }
-        // Z. Sun
-        // Here, we set all color, including the title's color to be the correct one as instruction displayed.
-        banner.style.backgroundColor = onClicked;
-        // If the color you clicked on was incorrect, you should set the color of the circle you just clicked to be the default color 
-        // and change the result text to be "Try again"
-    } else {
-        this.style.backgroundColor = "#f81b31";
-        resultMessage.textContent = "Try again";
-    }
-}
-
-// The reset function should set new values for the colours array by calling genRandomColours.
 function reset() {
-    // pick a color from these and set it as the color you are trying to pick. This color 
-    // should be obtained by calling chooseColor.
-    colours = genRandomColours(numCircles);
-    pickedColor = chooseColor();
-    colourToGuess.textContent = pickedColor;
-    // Z. Sūn
-    // Display the colour RGB value on the main page.
-    // Set the colour of the circles to the random colors you generated. 
-    // Set the color of the banner to the default color, set the text of the reset
-    for (var i = 0; i < circles.length; i++) {
-        circles[i].style.backgroundColor = colours[i];
-        circles[i].addEventListener("click", clickCircle);
+
+    // Added: the new round is active again.
+    gameOver = false;
+
+    // Added: make the circles clickable again.
+    container.classList.remove("game-over");
+
+
+    // Set the number of circles based on the mode.
+    if (currentMode === "easy") {
+
+        numCircles = 6;
+
+    } else {
+
+        numCircles = 10;
     }
-    banner.style.backgroundColor = defaultColour;
-    // button to "Restart" and the result text to an empty String. 
-    // Ensure that if a circle is clicked that the clickCircle function is called. 
+
+
+    // Generate new random colours.
+    colours = genRandomColours(numCircles);
+
+
+    // Pick one of those colours as the answer.
+    pickedColor = chooseColor();
+
+
+    // Display the RGB value.
+    colourToGuess.textContent = pickedColor;
+
+
+    // Remove all existing circles.
+    container.innerHTML = "";
+
+
+    // Remove Hard-mode styling.
+    container.classList.remove("hard-mode");
+
+
+    // Add Hard-mode styling when necessary.
+    if (currentMode === "hard") {
+
+        container.classList.add("hard-mode");
+    }
+
+
+    // Create the required number of circles.
+    for (var i = 0; i < numCircles; i++) {
+
+        var circle =
+            document.createElement("div");
+
+        circle.classList.add("circle");
+
+        circle.style.backgroundColor =
+            colours[i];
+
+        circle.addEventListener(
+            "click",
+            clickCircle
+        );
+
+        container.appendChild(circle);
+    }
+
+
+    // Get the newly-created circles.
+    circles =
+        document.querySelectorAll(".circle");
+
+
+    // Reset banner.
+    banner.style.backgroundColor =
+        defaultColour;
+
+
+    // Reset controls.
     resetButton.textContent = "Restart";
-    // Sūn
+
     resultMessage.textContent = "";
 }
-//Write a function to make a random RGB color. For RGB colours are 
-function makeColour() {
-    // made up of 3 values from 0 to 256. You should basically generate 3 random 
-    var a = Math.floor(Math.random() * 256);
-    var b = Math.floor(Math.random() * 256);
-    var c = Math.floor(Math.random() * 256);
-    // numbers and create a string "rgb(0,0,0)" but replace the 0 with random values. 
-    // github.com/2h-5
-    //return that string
-    return "rgb(" + a + ", " + b + ", " + c + ")";
+
+
+// ---------------------------------------------
+// CIRCLE CLICK
+// ---------------------------------------------
+
+function clickCircle() {
+
+    // Added: if the correct answer has already
+    // been selected, do nothing.
+    if (gameOver) {
+
+        return;
+    }
+
+
+    var onClicked =
+        this.style.backgroundColor;
+
+
+    // -----------------------------------------
+    // CORRECT ANSWER
+    // -----------------------------------------
+
+    if (onClicked === pickedColor) {
+
+        // Added: the round is now complete.
+        gameOver = true;
+
+        // Added: disable clicking on all circles.
+        container.classList.add("game-over");
+
+        // Added: display the check image
+        // only on the correctly selected circle.
+        this.classList.add("correct");
+
+        resultMessage.textContent =
+            "You got it!";
+
+        resetButton.textContent =
+            "Play again";
+
+
+        // Change every circle to the
+        // correct colour.
+        for (var i = 0; i < circles.length; i++) {
+
+            circles[i].style.backgroundColor =
+                pickedColor;
+        }
+
+
+        // Change banner to correct colour.
+        banner.style.backgroundColor =
+            pickedColor;
+    }
+
+
+    // -----------------------------------------
+    // INCORRECT ANSWER
+    // -----------------------------------------
+
+    else {
+
+        this.style.backgroundColor =
+            "#f81b31";
+
+        // Added: display the cross image
+        // on this incorrect circle.
+        this.classList.add("wrong");
+
+        resultMessage.textContent =
+            "Try one more time...";
+    }
 }
 
 
-// Write a function that will set new values for the colours array.
-// It should contain as many RGB color strings as there are circles
+// ---------------------------------------------
+// RESTART BUTTON
+// ---------------------------------------------
+
+resetButton.addEventListener(
+    "click",
+    function() {
+
+        reset();
+    }
+);
+
+
+// ---------------------------------------------
+// HINT BUTTON
+// ---------------------------------------------
+
+hintButton.addEventListener(
+    "click",
+    function() {
+
+        alert("Hi, welcome to my \"RGB Colour Guessing\" game. \n(Yes, this time it's a game indeed! And of course, it's fun to play with.) \n\nI would assume you can figure out how to play it for sure: \nGiven a random colour → Pick the correct one! \n(As I am not a \"harsh\" person, if you pick a wrong one, you can keep picking until you get the correct one!) \n\n\"Wait! So how to read the vector shown on the top? I don't get it!\"\nAh, I see! Let me break it down: \n\n- The vector on the top is called \"RGB colour space\", each number represents how much does the associated colour contains. \n\nExamples: \n1. If \"rgb(high, low, low)\", it means the correct colour looks like red. \n2. If \"rgb(high, high, low)\", it means the correct colour looks like \"red + green\", which is closer to olive-yellow. \n3. If \"rgb(low, high, high)\", it means the correct colour looks like \"green + blue\", which is closer to cyan. \n\n(Now, since this is just a light \"Hint\", not a solution manual, I think this is enough for you to understand the patterns, and try to figure out different scenarios yourself since you are all smart people, don't you?)");
+    }
+);
+
+// ---------------------------------------------
+// EASY / HARD MODE BUTTONS
+// ---------------------------------------------
+
+for (var i = 0; i < modeButtons.length; i++) {
+
+    modeButtons[i].addEventListener(
+        "click",
+        function() {
+
+            // Don't restart if the player clicks
+            // the mode already selected.
+            if (this.classList.contains("selected")) {
+
+                return;
+            }
+
+
+            // Get the selected mode.
+            currentMode =
+                this.getAttribute("data-mode");
+
+
+            // Remove selected styling from
+            // both buttons.
+            for (
+                var j = 0;
+                j < modeButtons.length;
+                j++
+            ) {
+
+                modeButtons[j]
+                    .classList
+                    .remove("selected");
+            }
+
+
+            // Highlight the selected button.
+            this.classList.add("selected");
+
+
+            // Start a fresh game.
+            reset();
+        }
+    );
+}
+
+
+// ---------------------------------------------
+// MAKE ONE RANDOM RGB COLOUR
+// ---------------------------------------------
+
+function makeColour() {
+
+    var a =
+        Math.floor(Math.random() * 256);
+
+    var b =
+        Math.floor(Math.random() * 256);
+
+    var c =
+        Math.floor(Math.random() * 256);
+
+
+    return "rgb(" +
+        a + ", " +
+        b + ", " +
+        c +
+        ")";
+}
+
+
+// ---------------------------------------------
+// GENERATE RANDOM COLOURS
+// ---------------------------------------------
+
 function genRandomColours(num) {
+
     var array = [];
+
+
     for (var i = 0; i < num; i++) {
+
         array.push(makeColour());
     }
+
+
     return array;
-    // 🆉. Sūn
 }
 
-//return one of the 6 RGB colours you created and stored in colours
-// this function should set the colour you are guessing.
+
+// ---------------------------------------------
+// CHOOSE THE ANSWER
+// ---------------------------------------------
+
 function chooseColor() {
-    var random = Math.floor(Math.random() * colours.length);
-    return colours[random];	
-    // 2h-5
+
+    var random =
+        Math.floor(
+            Math.random() * colours.length
+        );
+
+
+    return colours[random];
 }
