@@ -1,31 +1,48 @@
+<!DOCTYPE html>
 <html>
 <head>
-	<title>RGB Colour Guessing Game</title> <!-- Software Engineering -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link href='https://fonts.googleapis.com/css?family=Quicksand:300' rel='stylesheet' type='text/css'>	
-
+    <title>RGB Colour Guessing Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-	<h1>
-        <span id="colour-to-guess">RGB</span>
-    </h1> <!-- Scripting -->
-	<div id ="menu">
-		<button id="restart">Restart</button>
-		<span id="result-message"></span>
-        <!-- There are some features to be added in the feature...
-		<button class="mode">Easy</button> 🆉. Sūn
-		<button class="mode selected">Hard</button> 2h-5 -->
-	</div>
-	<div id="container">
-		<div class="circle"></div>
-		<div class="circle"></div>
-		<div class="circle"></div>
-		<div class="circle"></div>
-        <!-- SE -->
-		<div class="circle"></div>
-		<div class="circle"></div>
-	</div>
 
-	<script type="text/javascript" src="script.js"></script> <!-- Z. -->
+<body>
+
+    <h1>
+        Check this out:
+        <span id="colour-to-guess">RGB</span>
+        Guess which colour is this?
+    </h1>
+
+    <div id="menu">
+
+        <div id="left-controls">
+            <button id="restart">Restart</button>
+            <button id="hint">💡</button>
+        </div>
+
+        <div id="result-message"></div>
+
+        <div id="mode-controls">
+            <button class="mode selected" data-mode="easy">Easy</button>
+            <button class="mode" data-mode="hard">Hard</button>
+        </div>
+
+    </div>
+
+    <div id="container">
+        <!-- Circles are created dynamically by script.js -->
+    </div>
+
+    <nav class="navbar-down">
+        <div class="nav-logo-down">
+            <a href="https://github.com/2h-5" id="creator-link" target="_blank">Created by 🆉. Sūn</a>
+        </div>
+        
+        <div class="nav-links-down">
+        </div>
+    </nav>
+
+    <script type="text/javascript" src="script.js"></script>
+
 </body>
 </html>
