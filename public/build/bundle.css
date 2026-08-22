@@ -1,32 +1,27 @@
-/* --------------------------------
-   VARIABLES & GLOBAL
--------------------------------- */
+@charset "UTF-8";
 body {
   background-color: #878686;
   font-family: "FreeMono", monospace;
   font-size: 62.5%;
-  margin: 0;
+  margin: 0; /* 🆉. Sun */
 }
 
-/* --------------------------------
-   GAME AREA & MAIN CONTAINER
--------------------------------- */
 #container {
   max-width: 600px;
   margin: 0 auto;
   padding-top: 20px;
+  /* Scripting */
   overflow: hidden;
   transition: max-width 0.3s ease;
-  /* --------------------------------
-     HARD MODE (Nested under container)
-  -------------------------------- */
 }
 #container .circle {
+  /* 🆉. Sun */
   width: 30%;
   aspect-ratio: 1/1;
   background-color: rgb(49, 20, 152);
   float: left;
   margin: 1.66%;
+  /* SE */
   display: block;
   border-radius: 50%;
   cursor: pointer;
@@ -43,11 +38,13 @@ body {
   left: 50%;
   width: 55%;
   height: 55%;
+  /* Sūn */
   transform: translate(-50%, -50%);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   pointer-events: none;
+  /* Software */
   z-index: 10;
 }
 #container .circle.wrong::after {
@@ -62,17 +59,15 @@ body {
 }
 #container.hard-mode {
   max-width: 1000px;
+  /* Z. */
 }
-#container.hard-mode .circle {
+#container.hard-mode .circle { /* SE */
   width: 180px;
   height: 180px;
   padding-bottom: 0;
   margin: 10px;
 }
 
-/* --------------------------------
-   TITLE & TEXT
--------------------------------- */
 h1 {
   color: white;
   background-color: #582c99;
@@ -80,6 +75,7 @@ h1 {
   text-align: center;
   margin: 0;
   padding: 10px 0;
+  /* 🆉. Sūn */
 }
 
 #colour-to-guess {
@@ -87,15 +83,13 @@ h1 {
   font-size: 2em;
 }
 
-/* --------------------------------
-   MENU & CONTROLS
--------------------------------- */
 #menu {
   background: white;
   min-height: 40px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
+  /* github.com/2h-5 */
   box-sizing: border-box;
   padding: 0 10px;
   color: black;
@@ -113,6 +107,7 @@ h1 {
   font-family: "Arial Narrow", sans-serif;
   font-size: 2.5em;
   font-weight: bold;
+  /* 🆉. Sūn */
   white-space: nowrap;
 }
 
@@ -123,9 +118,6 @@ h1 {
   justify-content: flex-end;
 }
 
-/* --------------------------------
-   BUTTONS
--------------------------------- */
 button {
   outline: none;
   color: #d5389c;
@@ -135,6 +127,7 @@ button {
   background-color: white;
   height: 40px;
   padding: 0 10px;
+  /* Z. Sūn */
   letter-spacing: 1px;
   cursor: pointer;
   border: none;
@@ -155,13 +148,11 @@ button.selected {
 #hint {
   font-family: Arial, sans-serif;
   font-size: 1.7em;
+  /* Z. */
   padding: 0 10px;
   text-transform: none;
 }
 
-/* --------------------------------
-   NAVBAR (BOTTOM)
--------------------------------- */
 .navbar-down {
   position: absolute;
   top: 717.5px;
@@ -171,6 +162,7 @@ button.selected {
   background-color: #75567a;
   display: flex;
   justify-content: center;
+  /* 🆉. Sūn */
   align-items: center;
   padding: 0 20px;
   box-sizing: border-box;
@@ -183,6 +175,7 @@ button.selected {
   font-weight: bold;
   font-size: 1.4rem;
   align-content: center;
+  /* Scripting */
 }
 .nav-logo-down a {
   color: white;
@@ -198,9 +191,6 @@ button.selected {
   height: 100%; /* @author Z. Sun */
 }
 
-/* --------------------------------
-   MEDIA QUERIES (RESPONSIVE)
--------------------------------- */
 @media (max-width: 1020px) {
   #container.hard-mode {
     max-width: 800px;
@@ -216,6 +206,7 @@ button.selected {
     max-width: 600px;
   }
   #container.hard-mode .circle {
+    /* 🆉. */
     width: 30%;
     height: auto;
     padding-bottom: 30%;
@@ -232,9 +223,11 @@ button.selected {
   }
   #result-message {
     font-size: 2em;
+    /* 🆉. Sūn */
   }
   button {
     font-size: 1.3em;
+    /* github.com/2h-5 */
     padding: 0 7px;
   }
 }
@@ -247,6 +240,7 @@ button.selected {
   #result-message {
     grid-column: 1/-1;
     grid-row: 1;
+    /* 2h-5 */
     order: 1;
   }
   #left-controls {
