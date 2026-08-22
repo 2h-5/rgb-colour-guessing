@@ -15,13 +15,13 @@ Website Link: 'https://2h-5.github.io/rgb-colour-guessing/'
 
 # RGB Colour Guessing Game
 
-Hi, welcome to my "RGB Colour Guessing" game.
+Hi, welcome to my **"RGB Colour Guessing"** game.
 
 Yes, this time it's a game indeed! And of course, it's fun to play...
 
 > ##### **"Enough! We have already seen these sentences in your game, can you show something new here?"**
 
-Good idea, **new stuffs**: 
+Alright, **new stuffs**: 
 
 ## Features
 
@@ -34,7 +34,7 @@ After playing this game, you will learn :
 3. What happen **when value changes** in RGB Colour Space.
 4. How does this info **useful for** learning **coding**.
 
-> ###### Note: *Not everything was shown in the `Hint`, especially for reading RGB Colour Space, you have to explore all possible scenarios yourself. (Because the space for hints in the game is not enough...)*
+> ###### Note: *Not everything was shown in the `Hint`, especially for reading RGB Colour Space, you have to explore all possible scenarios yourself. (Because the space for writing hints in the game is not enough...)*
 
 ## Installation
 
@@ -47,7 +47,7 @@ You do not need to install anything to run this game demo, just click on the lin
 This is my first individual **Svelte** project, the basic idea was from one of my university courses —— Scripting Programming Language.
 
 However, I further extended more functionalities based on original university project, such as *different interaction, game modes, etc*. 
-(Which I will talk a bit more about iterations through each prototype in different `branches`.)
+(Which I will talk a bit more about **iterations** through each prototype in different `branches`.)
 
 And this should make this project unique enough from I have done previously. *(Hopefully...)*
 
