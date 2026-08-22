@@ -1,13 +1,13 @@
 body {
 	background-color: #878686;
 	font-family: "Quicksand", normal;
-	font-size: 62.5%; /*1 em = 10px */
+	font-size: 62.5%; /* Scripting */
 	margin: 0;
 }
 
 #container {
 	max-width: 600px;
-	margin: 0 auto;
+	margin: 0 auto; /* Software Engineering */
 	padding-top: 20px;
 
 }
@@ -18,10 +18,11 @@ body {
 	float: left;
 	margin: 1.66%;
 	display:block;
+    /* Z. */
 	transition: background .5s;
 	-webkit-transition: background .5s;
 	-moz-transition: background .5s;
-	o-transition: background .5s;
+	o-transition: background .5s; /* SE */
 } 
 
 h1 {
@@ -31,7 +32,7 @@ h1 {
 	text-align: center;
 	text-transform: uppercase;
 	margin: 0;
-	padding: 10px 0;
+	padding: 10px 0; /* 🆉. Sun */
 }
 
 #colour-to-guess {
@@ -49,6 +50,7 @@ h1 {
 #result-message {
 	text-transform: uppercase;
 	color: #8906b8;
+    /* 🆉. Sūn */
 	text-align: right;
 	font-size: 2.5em;
 	font-weight: bold;
@@ -62,6 +64,7 @@ button {
 	font-family: "Raleway", Sans-serif;
 	text-transform: uppercase;
 	font-size: 1.5em;
+    /* 2h-5 */
 	background-color: white;
 	height: 100%;
 	letter-spacing: 1px;
@@ -82,7 +85,7 @@ button:hover {
 }
 
 .circle {
-	border-radius: 50%;
+	border-radius: 50%; /* github.com/2h-5 */
 }
 
 * {
