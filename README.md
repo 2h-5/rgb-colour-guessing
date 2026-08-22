@@ -2,7 +2,12 @@
 
 ## Features (Compared to Prototype #1)
 
-1. ...
+###### Every new feature I added in Prototype #2 applied different coding logic from Prototype #1, which involved a lot of work, and makes this project to be quite different from my University project.
+
+1. Provide **two** different **game modes** for users to choose. *(You get more colour palettes in "Hard" mode.)*
+2. Add a "light" **hint** button beside "Restart/Play Again" button. *(Explain how to read RGB colour space effectively.)*
+3. Add **reference link** at the bottom.
+4. **Fix the problem** of game mode button squeezed out of the navigation bar due to different text length of "Restart/Play Again" button.
 
 ## Installation
 
