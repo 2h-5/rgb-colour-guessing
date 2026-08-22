@@ -1,7 +1,7 @@
 ---
 Title: RGB Colour Guessing Game
 Author: Z. Sūn
-Description: 'Web-based interactive colour guessing game, can be used to understand RGB colour space for CSS coding.'
+Description: 'Web-based interactive colour guessing game, can be used to learn RGB colour space for CSS coding.'
 Tags:
   - CSS
   - HTML
