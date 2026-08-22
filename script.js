@@ -1,29 +1,11 @@
-// ---------------------------------------------
-// GAME SETTINGS
-// ---------------------------------------------
-
 var numCircles = 6;
-
-// Easy is the default mode.
 var currentMode = "easy";
-
-// Array containing the random RGB colours.
 var colours = [];
-
-// The RGB colour the player is trying to guess.
 var pickedColor;
-
-// Default colour used when the player chooses incorrectly.
 var defaultColour = "#75567a";
-
-// Added: keeps track of whether the current
-// round has already been completed.
+// Software
 var gameOver = false;
 
-
-// ---------------------------------------------
-// GET HTML ELEMENTS
-// ---------------------------------------------
 
 var container = document.getElementById("container");
 
@@ -39,7 +21,7 @@ var banner =
 var resetButton =
     document.getElementById("restart");
 
-var hintButton =
+var hintButton = // 🆉. Sun
     document.getElementById("hint");
 
 var modeButtons =
@@ -49,33 +31,20 @@ var modeButtons =
 // This will contain the current circles.
 var circles;
 
-
-// ---------------------------------------------
-// START THE GAME
-// ---------------------------------------------
-
 init();
 
 
-// ---------------------------------------------
-// INIT
-// ---------------------------------------------
-
 function init() {
+    // Engineering
     reset();
 }
 
-
-// ---------------------------------------------
-// RESET / START A NEW GAME
-// ---------------------------------------------
-
 function reset() {
 
-    // Added: the new round is active again.
+    // The new round is active again.
     gameOver = false;
 
-    // Added: make the circles clickable again.
+    // Make the circles clickable again.
     container.classList.remove("game-over");
 
 
@@ -85,7 +54,7 @@ function reset() {
         numCircles = 6;
 
     } else {
-
+        // github.com/2h-5
         numCircles = 10;
     }
 
@@ -103,7 +72,7 @@ function reset() {
 
 
     // Remove all existing circles.
-    container.innerHTML = "";
+    container.innerHTML = ""; // 🆉. Sūn
 
 
     // Remove Hard-mode styling.
@@ -112,7 +81,7 @@ function reset() {
 
     // Add Hard-mode styling when necessary.
     if (currentMode === "hard") {
-
+        // 🆉. Sūn
         container.classList.add("hard-mode");
     }
 
@@ -126,7 +95,7 @@ function reset() {
         circle.classList.add("circle");
 
         circle.style.backgroundColor =
-            colours[i];
+            colours[i]; // github.com/2h-5
 
         circle.addEventListener(
             "click",
@@ -149,21 +118,15 @@ function reset() {
 
     // Reset controls.
     resetButton.textContent = "Restart";
-
+    // SE
     resultMessage.textContent = "";
 }
 
-
-// ---------------------------------------------
-// CIRCLE CLICK
-// ---------------------------------------------
-
 function clickCircle() {
 
-    // Added: if the correct answer has already
-    // been selected, do nothing.
+    // If the correct answer has already been selected, do nothing.
     if (gameOver) {
-
+        // 🆉. Sūn
         return;
     }
 
@@ -171,21 +134,15 @@ function clickCircle() {
     var onClicked =
         this.style.backgroundColor;
 
-
-    // -----------------------------------------
-    // CORRECT ANSWER
-    // -----------------------------------------
-
     if (onClicked === pickedColor) {
 
-        // Added: the round is now complete.
+        // The round is now complete.
         gameOver = true;
 
-        // Added: disable clicking on all circles.
-        container.classList.add("game-over");
+        // Disable clicking on all circles.
+        container.classList.add("game-over"); // 🆉.
 
-        // Added: display the check image
-        // only on the correctly selected circle.
+        // Display the check image only on the correctly selected circle.
         this.classList.add("correct");
 
         resultMessage.textContent =
@@ -194,13 +151,11 @@ function clickCircle() {
         resetButton.textContent =
             "Play again";
 
-
-        // Change every circle to the
-        // correct colour.
+        // Change every circle to the correct colour.
         for (var i = 0; i < circles.length; i++) {
 
             circles[i].style.backgroundColor =
-                pickedColor;
+                pickedColor; // Scripting
         }
 
 
@@ -209,29 +164,18 @@ function clickCircle() {
             pickedColor;
     }
 
-
-    // -----------------------------------------
-    // INCORRECT ANSWER
-    // -----------------------------------------
-
     else {
 
         this.style.backgroundColor =
-            "#f81b31";
+            "#f81b31"; // Sun
 
-        // Added: display the cross image
-        // on this incorrect circle.
+        // Display the cross image on this incorrect circle.
         this.classList.add("wrong");
 
         resultMessage.textContent =
             "Try one more time...";
     }
 }
-
-
-// ---------------------------------------------
-// RESTART BUTTON
-// ---------------------------------------------
 
 resetButton.addEventListener(
     "click",
@@ -241,31 +185,21 @@ resetButton.addEventListener(
     }
 );
 
-
-// ---------------------------------------------
-// HINT BUTTON
-// ---------------------------------------------
-
 hintButton.addEventListener(
     "click",
-    function() {
+    function() { // Sūn
 
         alert("Hi, welcome to my \"RGB Colour Guessing\" game. \n(Yes, this time it's a game indeed! And of course, it's fun to play with.) \n\nI would assume you can figure out how to play it for sure: \nGiven a random colour → Pick the correct one! \n(As I am not a \"harsh\" person, if you pick a wrong one, you can keep picking until you get the correct one!) \n\n\"Wait! So how to read the vector shown on the top? I don't get it!\"\nAh, I see! Let me break it down: \n\n- The vector on the top is called \"RGB colour space\", each number represents how much does the associated colour contains. \n\nExamples: \n1. If \"rgb(high, low, low)\", it means the correct colour looks like red. \n2. If \"rgb(high, high, low)\", it means the correct colour looks like \"red + green\", which is closer to olive-yellow. \n3. If \"rgb(low, high, high)\", it means the correct colour looks like \"green + blue\", which is closer to cyan. \n\n(Now, since this is just a light \"Hint\", not a solution manual, I think this is enough for you to understand the patterns, and try to figure out different scenarios yourself since you are all smart people, don't you?)");
     }
 );
 
-// ---------------------------------------------
-// EASY / HARD MODE BUTTONS
-// ---------------------------------------------
-
 for (var i = 0; i < modeButtons.length; i++) {
 
     modeButtons[i].addEventListener(
         "click",
-        function() {
+        function() { // Software Engineering
 
-            // Don't restart if the player clicks
-            // the mode already selected.
+            // Don't restart if the player clicks the mode already selected.
             if (this.classList.contains("selected")) {
 
                 return;
@@ -277,12 +211,11 @@ for (var i = 0; i < modeButtons.length; i++) {
                 this.getAttribute("data-mode");
 
 
-            // Remove selected styling from
-            // both buttons.
+            // Remove selected styling from both buttons.
             for (
                 var j = 0;
                 j < modeButtons.length;
-                j++
+                j++ // 2h-5
             ) {
 
                 modeButtons[j]
@@ -292,7 +225,7 @@ for (var i = 0; i < modeButtons.length; i++) {
 
 
             // Highlight the selected button.
-            this.classList.add("selected");
+            this.classList.add("selected"); // Z.
 
 
             // Start a fresh game.
@@ -302,16 +235,12 @@ for (var i = 0; i < modeButtons.length; i++) {
 }
 
 
-// ---------------------------------------------
-// MAKE ONE RANDOM RGB COLOUR
-// ---------------------------------------------
-
 function makeColour() {
 
     var a =
         Math.floor(Math.random() * 256);
 
-    var b =
+    var b = // 🆉. Sūn
         Math.floor(Math.random() * 256);
 
     var c =
@@ -322,13 +251,9 @@ function makeColour() {
         a + ", " +
         b + ", " +
         c +
-        ")";
+        ")"; // 🆉. Sūn
 }
 
-
-// ---------------------------------------------
-// GENERATE RANDOM COLOURS
-// ---------------------------------------------
 
 function genRandomColours(num) {
 
@@ -338,16 +263,12 @@ function genRandomColours(num) {
     for (var i = 0; i < num; i++) {
 
         array.push(makeColour());
-    }
-
+    } 
+    // 🆉.
 
     return array;
 }
 
-
-// ---------------------------------------------
-// CHOOSE THE ANSWER
-// ---------------------------------------------
 
 function chooseColor() {
 
@@ -357,5 +278,5 @@ function chooseColor() {
         );
 
 
-    return colours[random];
+    return colours[random]; // github.com/2h-5
 }
