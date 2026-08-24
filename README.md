@@ -6,6 +6,7 @@ Tags:
   - CSS
   - HTML
   - JavaScript
+  - SCSS
   - Svelte
   - Windows
 Website Link: 'https://2h-5.github.io/rgb-colour-guessing/'
