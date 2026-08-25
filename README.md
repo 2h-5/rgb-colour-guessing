@@ -12,6 +12,8 @@ Tags:
 Website Link: 'https://2h-5.github.io/rgb-colour-guessing/'
 ---
 
+#### _**Warning: For better user experience, please open this web game using your PC instead of smartphone...**_
+
 ###### Belows are my instructions and notes for every user (*player*)  who wants to know more.
 
 # RGB Colour Guessing Game
@@ -41,7 +43,7 @@ After playing this game, you will learn :
 
 You do not need to install anything to run this game demo, just click on the link given [here](https://2h-5.github.io/rgb-colour-guessing/). Do not worry, this link is not malicious as I deployed it using **GitHub Pages**.
 
-> ###### Warning: *For better user experience, please open this web app using your computer instead of smartphone...* 
+> ###### Warning again: *For better user experience, please open this web app using your PC instead of smartphone...* 
 
 ## Stories Behind the Work
 
